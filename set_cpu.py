@@ -45,7 +45,7 @@ def run_benchmark(i):
 					   'parsecmgmt -a run -p streamcluster -i smilarge' ,
 					   'parsecmgmt -a run -p swaptions -i smilarge' ,
 					   'parsecmgmt -a run -p vips -i smilarge' ,
-					   'parsecmgmt -a run -p x264 -i smilarge' ,
+					   'parsecmgmt -a run -p x264 -i smilarge' ,]
 	#os.system(execute_command)
 	print execute_command(i)
 

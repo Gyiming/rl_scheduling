@@ -32,10 +32,22 @@ def governer():
 		#os.system(execute_command)
 		print execute_command
 
-def run_benchmark():
-	execute_command = 'parsecmgmt -a run -p all'
+def run_benchmark(i):
+	execute_command = ['parsecmgmt -a run -p blackscholes -i smilarge' ,
+					   'parsecmgmt -a run -p bodytrack -i smilarge' ,
+					   'parsecmgmt -a run -p canneal -i smilarge' ,
+					   'parsecmgmt -a run -p dedup -i smilarge' ,
+					   'parsecmgmt -a run -p facesim -i smilarge' ,
+					   'parsecmgmt -a run -p ferret -i smilarge' ,
+					   'parsecmgmt -a run -p fluidanimate -i smilarge' , 
+					   'parsecmgmt -a run -p freqmine -i smilarge' ,
+					   'parsecmgmt -a run -p raytrace -i smilarge' ,
+					   'parsecmgmt -a run -p streamcluster -i smilarge' ,
+					   'parsecmgmt -a run -p swaptions -i smilarge' ,
+					   'parsecmgmt -a run -p vips -i smilarge' ,
+					   'parsecmgmt -a run -p x264 -i smilarge' ,
 	#os.system(execute_command)
-	print execute_command	
+	print execute_command(i)
 
 def power_measure_tx2():
 	#f = open("/sys/devices/316000.i2c/i2c-0/0-0041/iio_device/in_power1_input","r")
@@ -54,7 +66,7 @@ def main():
 		accumulate_p2 = time.time() - start_p2
 		accumulate_p3 = time.time() - start_p3
 		if accumulate_p1 > 5:
-			p1.start()
+			p1.start(5)
 			start_p1 = time.time()
 		if accumulate_p2 > 3:
 			p2.start()

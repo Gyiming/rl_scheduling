@@ -1,10 +1,5 @@
 # rl_scheduling
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
-
 ### Install Parsec on TX2
  
   - Follow the instructions on http://parsec.cs.princeton.edu/parsec3-doc.htm#simulation

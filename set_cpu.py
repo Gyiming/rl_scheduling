@@ -20,19 +20,19 @@ def governer(i):
 	if (i==0):
 		execute_command = 'sudo cpufrep-set -c' + ' -r' + ' -g' + ' ' + policy[i]
 		#os.system(execute_command)
-		print execute_command
+		#print execute_command
 	if (i==1):
 		execute_command = 'sudo cpufrep-set -c' + ' -r' + ' -g' + ' ' + policy[i]
 		#os.system(execute_command)
-		print execute_command
+		#print execute_command
 	if (i==2):
 		execute_command = 'sudo cpufrep-set -c' + ' -r' + ' -g' + ' ' + policy[i]
 		#os.system(execute_command)
-		print execute_command
+		#print execute_command
 	if (i==3):
 		execute_command = 'sudo cpufrep-set -c' + ' -r' + ' -g' + ' ' + policy[i]
 		#os.system(execute_command)
-		print execute_command
+		#print execute_command
 
 def run_benchmark(i):
 	execute_command = ['parsecmgmt -a run -p blackscholes -i smilarge' ,
@@ -58,8 +58,8 @@ def main():
 	start_p3 = time.time()
 	start_simulation = time.time()
 	gover_update_freq = 0.5
-	run_bench_freq = 1
-	colleco_power_freq = 5
+	run_bench_freq = 5
+	collect_power_freq = 5
 	feedback_freq = []
 	feedback_util = []
 	power_measurement = []
@@ -84,7 +84,7 @@ def main():
 			p2.start(choice)
 			#print math.floor((time.time() - start_p2))
 			start_p2 = time.time()
-		if accumulate_p3 > 5:
+		if accumulate_p3 > collect_power_freq:
 			p = p3.start()
 			#print math.floor((time.time() - start_p3))
 			power_measurement.append(p)

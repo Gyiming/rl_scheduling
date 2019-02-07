@@ -46,14 +46,25 @@ def train(epochnumber):
         for f in net.parameters():
             f.data.sub_(f.data.data*learning_rate)
 
+def agent(net,input):
+
+    output = net(input.unsqueeze(0))
+    _,predicted = torch.max(output,1)
+#    print(predicted)
+    return predicted[0]
+
+
 
 def get_data_test(net):
     inputs = torch.rand(10,10,5)
     labels = torch.zeros(10,10)
     for i in range(10):
-        outputs = net(inputs[i])
-        _, predicted = torch.max(outputs,1)
-        labels[i] = predicted
+        for j in range(10):
+            result = agent(net,inputs[i,j])
+            labels[i,j] = result
+  #      outputs = net(inputs[i])
+   #     _, predicted = torch.max(outputs,1)
+  #      labels[i] = predicted
     rewards = torch.rand(10)
     return inputs, labels, rewards
 

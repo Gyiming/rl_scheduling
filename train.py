@@ -5,6 +5,7 @@ import torch.nn.functional as F
 input_feature = 5
 out_policy_number = 4
 
+
 class Net(nn.Module):
 
     def __init__(self):
@@ -25,49 +26,48 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
+
 net = Net()
-learning_rate=0.1
+learning_rate = 0.1
 criterion = nn.CrossEntropyLoss()
 
 
 def train(epochnumber):
     for epoch in range(epochnumber):
         with torch.no_grad():
-            inputs,labels,rewards = get_data_test(net)
+            inputs, labels, rewards = get_data_test(net)
         loss = 0.0
         for i in range(len(inputs)):
             input = inputs[i]
             label = labels[i].long()
             reward = rewards[i]
             output = net(input)
-            loss += criterion(output, label)*reward
+            loss += criterion(output, label) * reward
         net.zero_grad()
         loss.backward()
         for f in net.parameters():
-            f.data.sub_(f.data.data*learning_rate)
+            f.data.sub_(f.data.data * learning_rate)
 
-def agent(net,input):
 
+def agent(net, input):
     output = net(input.unsqueeze(0))
-    _,predicted = torch.max(output,1)
-#    print(predicted)
+    _, predicted = torch.max(output, 1)
+    #    print(predicted)
     return predicted[0]
 
 
-
 def get_data_test(net):
-    inputs = torch.rand(10,10,5)
-    labels = torch.zeros(10,10)
+    inputs = torch.rand(10, 10, 5)
+    labels = torch.zeros(10, 10)
     for i in range(10):
         for j in range(10):
-            result = agent(net,inputs[i,j])
-            labels[i,j] = result
-  #      outputs = net(inputs[i])
-   #     _, predicted = torch.max(outputs,1)
-  #      labels[i] = predicted
+            result = agent(net, inputs[i, j])
+            labels[i, j] = result
+    #      outputs = net(inputs[i])
+    #     _, predicted = torch.max(outputs,1)
+    #      labels[i] = predicted
     rewards = torch.rand(10)
     return inputs, labels, rewards
 
+
 train(10)
-
-

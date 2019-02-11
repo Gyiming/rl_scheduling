@@ -57,15 +57,23 @@ def agent(net, input):
 
 
 def get_data_test(net):
-    inputs = torch.rand(10, 10, 5)
-    labels = torch.zeros(10, 10)
-    for i in range(10):
-        for j in range(10):
+    epoch_number = 10 #the number of epochs, one epoch means one experiment from start to end, we need several epochs results before each update of weights
+    record_number = 10 # the number of records during each epoch, that how many times we record the features and actions during a epoch
+
+    #get the feature from experiments, here I just use random number instead
+    inputs = torch.rand(epoch_number, record_number, input_feature)
+
+    #get the action(label), call the agent function
+    labels = torch.zeros(epoch_number, record_number)
+    for i in range(epoch_number):
+        for j in range(record_number):
             result = agent(net, inputs[i, j])
             labels[i, j] = result
     #      outputs = net(inputs[i])
     #     _, predicted = torch.max(outputs,1)
     #      labels[i] = predicted
+
+    #get the energy and result for all epochs, one epoch correspond one output, here I use random number instead
     rewards = torch.rand(10)
     return inputs, labels, rewards
 
